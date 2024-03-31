@@ -12,8 +12,8 @@ env:
   BUILD_ARCH: amd64
   BUILD_BY: vyos-build-action@github.com
   BUILD_TYPE: release
-  BUILD_VERSION: ${{ github.ref }}
-  TAG_NAME: ${{ github.ref }}
+  BUILD_VERSION: ${{ steps.findandreplace.outputs.value }}
+  TAG_NAME: ${{ steps.findandreplace.outputs.value }}
   BUILD_QEMU: true
   BUILD_QCOW2: true
   BUILD_HYPERV: true
@@ -35,6 +35,12 @@ jobs:
       options: --workdir /vyos --privileged
 
     steps:
+      - uses: mad9000/actions-find-and-replace-string@5
+        with:
+          source: ${{ github.ref }} # this translates to ref/heads/main on the main branch, but can be any arbitrary string 
+          find: 'ref/heads/'        # we want to remove ref/heads/ from source 
+          replace: ''               # and replace it with a blank string (ie. removing it)
+
       - name: Checkout
         uses: actions/checkout@v4
 
