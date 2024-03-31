@@ -36,6 +36,7 @@ jobs:
 
     steps:
       - uses: mad9000/actions-find-and-replace-string@5
+        id: findandreplace
         with:
           source: ${{ github.ref }} # this translates to ref/heads/main on the main branch, but can be any arbitrary string 
           find: 'refs/tags/'        # we want to remove ref/heads/ from source 
