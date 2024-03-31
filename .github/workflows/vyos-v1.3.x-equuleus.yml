@@ -12,8 +12,8 @@ env:
   BUILD_ARCH: amd64
   BUILD_BY: vyos-build-action@github.com
   BUILD_TYPE: release
-  BUILD_VERSION: ${{ github.ref }}
-  TAG_NAME: ${{ github.ref }}
+  BUILD_VERSION: ${{ github.ref.replace('v', '') }}
+  TAG_NAME: ${{ github.ref.replace('v', '') }}
   BUILD_QEMU: true
   BUILD_QCOW2: true
   BUILD_HYPERV: true
