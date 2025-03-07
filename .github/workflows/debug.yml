@@ -19,7 +19,7 @@ jobs:
           echo "Requesting OIDC token"
           echo "Request URL: ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_URL }}"
           echo "Request Token length: ${#ACTIONS_ID_TOKEN_REQUEST_TOKEN}"
-          echo "Request Token prefix (first 10 chars): ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_TOKEN:0:10 }}"
+          echo "Request Token prefix (first 10 chars): ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:0:10}"
           if [ -z "${{ secrets.ACTIONS_ID_TOKEN_REQUEST_URL }}" ]; then
             echo "ERROR: ACTIONS_ID_TOKEN_REQUEST_URL is empty"
             echo "User: $GITHUB_ACTOR - Contact GitHub Support with this log"
